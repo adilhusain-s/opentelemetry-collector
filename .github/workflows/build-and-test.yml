@@ -155,12 +155,12 @@ jobs:
           key: coverage-${{ runner.os }}-go-build-${{ hashFiles('**/go.sum') }}
       - name: Run Unit Tests With Coverage
         run: make gotest-with-cover
-      - name: Upload coverage report
-        uses: codecov/codecov-action@v3
-        with:
-          file: ./coverage.txt
-          fail_ci_if_error: true
-          verbose: true
+      # - name: Upload coverage report
+      #   uses: codecov/codecov-action@v3
+      #   with:
+      #     file: ./coverage.txt
+      #     fail_ci_if_error: true
+      #     verbose: true
 
   cross-build-collector:
     needs: [setup-environment]
@@ -186,6 +186,8 @@ jobs:
             goarch: arm64
           - goos: linux
             goarch: arm
+          - goos: linux
+            goarch: ppc64le
           - goos: windows
             goarch: 386
           - goos: windows

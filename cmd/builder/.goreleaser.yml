@@ -1,9 +1,9 @@
 before:
   hooks:
     - go mod download
-monorepo:
-  tag_prefix: cmd/builder/
-  dir: cmd/builder
+#monorepo:
+#tag_prefix: cmd/builder/
+#dir: cmd/builder
 builds:
   - flags:
       - -trimpath
@@ -11,6 +11,7 @@ builds:
       - -s -w -X go.opentelemetry.io/collector/cmd/builder/internal.version={{.Version}} -X go.opentelemetry.io/collector/cmd/builder/internal.date={{.Date}}
     env:
       - CGO_ENABLED=0
+    dir: ./cmd/builder
     goos:
       - linux
       - windows
@@ -18,13 +19,14 @@ builds:
     goarch:
       - amd64
       - arm64
+      - ppc64le
     ignore:
       - goos: windows
         goarch: arm64
     binary: ocb
 release:
   github:
-    owner: open-telemetry
+    owner: adilhusain-s
     name: opentelemetry-collector
 archives:
   - format: binary
