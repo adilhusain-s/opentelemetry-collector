@@ -13,6 +13,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref }}
   cancel-in-progress: true
 
+env: # Define environment variables globally
+  GOCACHE: ${{ github.workspace }}/.cache/go-build
+  HOME: ${{ github.workspace }}
 jobs:
   setup-environment:
     runs-on: ubuntu-22.04-ppc64le
